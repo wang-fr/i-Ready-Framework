@@ -28,9 +28,9 @@ iReadyFramework.utils.appendScript=(url)=>{ document.body.appendChild(Object.ass
 iReadyFramework.ui.closeModal = () => { goto('/student/dashboard/home/'), clearInterval(interval) }
 iReadyFramework.ui.getModal = () => document.getElementsByClassName('css-1w7vrn4 enj526p0')[0];
 iReadyFramework.ui.openTempModal = () => goto('/student/error/lockDownBrowserLoader');
-
 iReadyFramework.ui.openModal = (title, description, callback, html) => {
     iReadyFramework.ui.openTempModal()
+    let interval = setInterval(function() {
         try {
         if (iReadyFramework.ui.getModal().innerText != undefined) {
                 if(html = true ) {
@@ -43,8 +43,8 @@ iReadyFramework.ui.openModal = (title, description, callback, html) => {
                     document.getElementById('continue-button-button').onclick = callback;
                 }
             }
-        } catch (error) {
-    }
+        } catch (error) {}
+    }, 10);
 }
 
 /*-------------------------------------
@@ -177,5 +177,4 @@ iReadyFramework.routes = {
     '@@ROUTER@@/student/lesson/paused' : '/student/lesson/paused',
     '@@ROUTER@@/student/lockDownBrowserLoader' : '/student/lockDownBrowserLoader',
     '@@ROUTER@@/student/mathFluencyPlayerPage' : '/student/mathFluencyPlayerPage'
-
 }
